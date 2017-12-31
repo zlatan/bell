@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">Разписание звънец</string>
+    <string name="h1">Първи</string>
+    <string name="h2">Втори</string>
+    <string name="h3">Трети</string>
+    <string name="h4">Четвърти</string>
+    <string name="h5">Пети</string>
+    <string name="h6">Шести</string>
+    <string name="h7">Седми</string>
+
+    <string name="a1">Първо</string>
+    <string name="a2">Второ</string>
+    <string name="a3">Трето</string>
+    <string name="a4">Четвърто</string>
+    <string name="a5">Пето</string>
+    <string name="a6">Шесто</string>
+    <string name="a7">Седмо</string>
+
+</resources>
