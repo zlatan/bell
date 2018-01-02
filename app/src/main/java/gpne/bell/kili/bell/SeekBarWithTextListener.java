@@ -1,32 +1,28 @@
 package gpne.bell.kili.bell;
 
-
-
 import android.widget.SeekBar;
 import android.widget.TextView;
 
-import java.util.Map;
 
 public class SeekBarWithTextListener implements SeekBar.OnSeekBarChangeListener {
 
     private TextView textView;
     private String textField;
     private String index;
-    private Map<String,Integer> schedules;
+    private SchedulesExecutor schedulesExecutor;
 
-    public SeekBarWithTextListener(TextView textView, String textField,String index,  Map<String,Integer> schedules) {
+    public SeekBarWithTextListener(TextView textView, String textField,String index, SchedulesExecutor schedulesExecutor) {
         this.textView = textView;
         this.textField = textField;
         this.index = index;
-        this.schedules = schedules;
+        this.schedulesExecutor = schedulesExecutor;
     }
 
     @Override
     public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
         String textFormat = String.format(textField,i);
-        schedules.put(index,i);
+        schedulesExecutor.apply(index,i);
         textView.setText(textFormat);
-        SchedulesExecutor schedulesExecutor = new SchedulesExecutor(schedules);
     }
 
     @Override

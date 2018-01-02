@@ -10,8 +10,11 @@ import java.util.Map;
 
 public class SeekBarFactory {
 
-    Map<String,Integer> schedules = new HashMap<>();
+    SchedulesExecutor schedulesExecutor;
 
+    public SeekBarFactory(SchedulesExecutor schedulesExecutor) {
+        this.schedulesExecutor = schedulesExecutor;
+    }
 
     public void buildHours(List<Hour> hours) {
         for (Hour hour : hours) {
@@ -19,7 +22,7 @@ public class SeekBarFactory {
             String text = hour.getText();
             SeekBar seekBar = hour.getSeekBar();
             String index = hour.getIndex();
-            SeekBarWithTextListener seekBarWithTextListener = new SeekBarWithTextListener(textView,text,index,schedules);
+            SeekBarWithTextListener seekBarWithTextListener = new SeekBarWithTextListener(textView,text,index,schedulesExecutor);
             seekBar.setOnSeekBarChangeListener(seekBarWithTextListener);
             seekBar.setMax(0);
             seekBar.setMax(40);
@@ -33,7 +36,7 @@ public class SeekBarFactory {
             String text = hour.getText();
             SeekBar seekBar = hour.getSeekBar();
             String index = hour.getIndex();
-            SeekBarWithTextListener seekBarWithTextListener = new SeekBarWithTextListener(textView,text,index,schedules);
+            SeekBarWithTextListener seekBarWithTextListener = new SeekBarWithTextListener(textView,text,index,schedulesExecutor);
             seekBar.setOnSeekBarChangeListener(seekBarWithTextListener);
             seekBar.setMax(0);
             seekBar.setMax(10);

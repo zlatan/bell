@@ -1,17 +1,14 @@
 package gpne.bell.kili.bell;
 
+import java.util.HashMap;
 import java.util.Map;
 
 public class SchedulesExecutor {
 
-    Map<String,Integer> schedules;
+    private Map<String,Integer> schedules = new HashMap<>();
 
-    public SchedulesExecutor(Map<String, Integer> schedules) {
-        this.schedules = schedules;
-        calc();
-    }
-
-    private void calc(){
+    public void apply(String index, Integer value){
+        schedules.put(index,value);
         for(String dgd:  schedules.keySet()){
             System.out.println(dgd + ">>>" + schedules.get(dgd));
         }
