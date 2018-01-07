@@ -1,6 +1,9 @@
 package gpne.bell.kili.bell;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.app.TimePickerDialog;
+import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -12,19 +15,29 @@ import android.widget.TimePicker;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     Button buttonStart1,buttonStart2;
     TextView start1,start2;
 
+    private static Context context;
+
     private int mHour, mMinute;
     SchedulesExecutor schedulesExecutor;
+
+    private AlarmManager alarmMgr;
+    private PendingIntent alarmIntent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        MainActivity.context = getApplicationContext();
 
         List<Hour> hours = new ArrayList<>();
         List<Hour> antracts = new ArrayList<>();
@@ -65,6 +78,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         SeekBarFactory seekBarFactory = new SeekBarFactory(schedulesExecutor);
         seekBarFactory.buildHours(hours);
         seekBarFactory.buildAntracts(antracts);
+
+        Runnable runnable = new Runnable() {
+            public void run() {
+                // task to run goes here
+                System.out.println("Hello !!");
+            }
+        };
+
+        ScheduledExecutorService service = Executors.newSingleThreadScheduledExecutor();
+        service.scheduleAtFixedRate(runnable, 5, 5, TimeUnit.SECONDS);
+        service.scheduleAtFixedRate(runnable, 5, 5, TimeUnit.SECONDS);
+
     }
 
     @Override
