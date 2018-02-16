@@ -4,6 +4,8 @@ import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.app.TimePickerDialog;
 import android.content.Context;
+import android.os.Build;
+import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -32,6 +34,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private AlarmManager alarmMgr;
     private PendingIntent alarmIntent;
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -79,16 +82,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         seekBarFactory.buildHours(hours);
         seekBarFactory.buildAntracts(antracts);
 
-        Runnable runnable = new Runnable() {
-            public void run() {
-                // task to run goes here
-                System.out.println("Hello !!");
-            }
-        };
-
-        ScheduledExecutorService service = Executors.newSingleThreadScheduledExecutor();
-        service.scheduleAtFixedRate(runnable, 5, 5, TimeUnit.SECONDS);
-        service.scheduleAtFixedRate(runnable, 5, 5, TimeUnit.SECONDS);
+//        Runnable runnable = new Runnable() {
+//            public void run() {
+//                // task to run goes here
+//                System.out.println("Hello !!");
+//            }
+//        };
+//
+//        ScheduledExecutorService service = Executors.newSingleThreadScheduledExecutor();
+//        service.scheduleAtFixedRate(runnable, 5, 5, TimeUnit.SECONDS);
+//        service.scheduleAtFixedRate(runnable, 5, 5, TimeUnit.SECONDS);
 
     }
 
@@ -102,6 +105,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             TimePickerDialog timePickerDialog = new TimePickerDialog(this,
                     new TimePickerDialog.OnTimeSetListener() {
+                        @RequiresApi(api = Build.VERSION_CODES.O)
                         @Override
                         public void onTimeSet(TimePicker view, int hourOfDay,int minute) {
                             schedulesExecutor.apply("s1",hourOfDay*60+minute);
@@ -118,6 +122,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             TimePickerDialog timePickerDialog = new TimePickerDialog(this,
                     new TimePickerDialog.OnTimeSetListener() {
+                        @RequiresApi(api = Build.VERSION_CODES.O)
                         @Override
                         public void onTimeSet(TimePicker view, int hourOfDay,int minute) {
                             schedulesExecutor.apply("s2",hourOfDay*60+minute);

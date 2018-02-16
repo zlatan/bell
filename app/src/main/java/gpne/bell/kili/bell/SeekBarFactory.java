@@ -39,7 +39,7 @@ public class SeekBarFactory {
             SeekBarWithTextListener seekBarWithTextListener = new SeekBarWithTextListener(textView,text,index,schedulesExecutor);
             seekBar.setOnSeekBarChangeListener(seekBarWithTextListener);
             seekBar.setMax(0);
-            seekBar.setMax(10);
+            seekBar.setMax(15);
             seekBar.setProgress(10);
         }
     }
