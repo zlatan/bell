@@ -73,70 +73,39 @@ public class SchedulesExecutor {
         dailySchedules.add(schedules.get("s2"));
         dailySchedules.addAll(zipped);
 
+
         if (dailySchedules.size()==30){
             Integer ds[] = new Integer[30];
             ds = dailySchedules.toArray(ds);
-            int i = 1;
 
             singleBell.add(ds[0]-5);
-            doubleBell.add(ds[0]);
-            singleBell.add(ds[0]+ds[1]);
-            doubleBell.add(ds[0]);
-            doubleBell.add(ds[0]);
-            doubleBell.add(ds[0]);
-            doubleBell.add(ds[0]);
-            doubleBell.add(ds[0]);
-            doubleBell.add(ds[0]);
-            doubleBell.add(ds[0]);
+
+            int moment = 0 ;
+            for (int j = 0; j <= 12; j=j+2) {
+                for (int i = 0; i <= j; i++) {
+                    moment += ds[i];
+                }
+                doubleBell.add(moment);
+                System.out.println(moment);
+                moment=0;
+            }
+
+            for (int j = 1; j <= 13; j=j+2) {
+                for (int i = 0; i <= j; i++) {
+                    moment += ds[i];
+                }
+                singleBell.add(moment);
+                System.out.println(moment);
+                moment=0;
+            }
 
 
-            System.out.println(ds[29]);
+
+                System.out.println(ds[29]);
 
         }
 
 
-//
-//        0I/System.out: 450 G
-//        1I/System.out: 40 M
-//        1/2       M
-//        2I/System.out: 10 G
-//        3I/System.out: 40
-//        4I/System.out: 10
-//        5I/System.out: 40
-//        6I/System.out: 10
-//        7I/System.out: 40
-//        8I/System.out: 10
-//        9I/System.out: 39
-//        10I/System.out: 10
-//        11I/System.out: 40
-//        12I/System.out: 10
-//        13I/System.out: 40
-//        14 =>>>>>>>>>>>>I/System.out: 10
-//        15I/System.out: 810
-//        16I/System.out: 40
-//        17I/System.out: 10
-//        18I/System.out: 40
-//        19I/System.out: 10
-//        20I/System.out: 40
-//        21I/System.out: 10
-//        22I/System.out: 40
-//        23I/System.out: 10
-//        24I/System.out: 39
-//        25I/System.out: 10
-//        26I/System.out: 40
-//        27I/System.out: 10
-//        28I/System.out: 40
-//        29 =>>>>>>>>>I/System.out: 10
-//
-
-
-//        Stream<Integer> s1 = Stream.of(schedules.get("s1"));
-//        Stream<Integer> s2 = Stream.of(schedules.get("s2"));
-//
-//        Stream<Integer> fs = Stream.concat(s1,zipped.stream());
-//        Stream<Integer> ss = Stream.concat(s2,zipped.stream());
-//
-//        Stream<Integer> daylySchedules = Stream.concat(fs,ss);
 
 
 
